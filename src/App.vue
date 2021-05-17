@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <LeftPanel />
+    <LeftPanel :data="this.weather.consolidated_weather[0]" :location="this.weather.title"/>
     <RightPanel :data="this.weather" :tempStatus="this.tempActive"/>
     <!-- <p style="color:white;background:red;width:100px;">{{weather}}</p> -->
   </div>
@@ -39,7 +39,7 @@ export default {
       const apiFetchUrl = 'https://api.allorigins.win/raw?url='
       const apiUrl = 'https://www.metaweather.com/api/location/'
       // let location = await this.fetchLocation()
-      let location = 1105779
+      let location = 455825
       let url = `${apiFetchUrl}${apiUrl}${location}`
       const res = await fetch(`${url}`)
       const data =  await res.json()

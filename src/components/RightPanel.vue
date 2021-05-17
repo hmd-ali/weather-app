@@ -7,10 +7,10 @@
     </div>
     <div class="weather-data">
         <WeatherDay :data="data.consolidated_weather[1]" day='Tomorrow'/>
-        <WeatherDay :data="data.consolidated_weather[2]" :day='data.consolidated_weather[1].applicable_date'/>
-        <WeatherDay :data="data.consolidated_weather[3]" :day='data.consolidated_weather[2].applicable_date'/>
-        <WeatherDay :data="data.consolidated_weather[4]" :day='data.consolidated_weather[3].applicable_date'/>
-        <WeatherDay :data="data.consolidated_weather[5]" :day='data.consolidated_weather[4].applicable_date'/>
+        <WeatherDay :data="data.consolidated_weather[2]" :day='getDateString(data.consolidated_weather[2].applicable_date)'/>
+        <WeatherDay :data="data.consolidated_weather[3]" :day='getDateString(data.consolidated_weather[3].applicable_date)'/>
+        <WeatherDay :data="data.consolidated_weather[4]" :day='getDateString(data.consolidated_weather[4].applicable_date)'/>
+        <WeatherDay :data="data.consolidated_weather[5]" :day='getDateString(data.consolidated_weather[5].applicable_date)'/>
     </div>
     <div class="highlights-container">
         <h1>Today's highlights</h1>
@@ -38,6 +38,18 @@ export default {
     props:{
         data: Object,
         tempStatus: Boolean,
+    },
+    methods:{
+        getDateString(mydate) {
+            const date = new Date(mydate)
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Now', 'Dec']
+            const days = ['Mon.', 'Tue.','Wed.', 'Thu.', 'Fri.', 'Sat.', 'Sun.']
+            let day = days[date.getDay()]
+            let weekDay = date.getDate()
+            let month = months[date.getMonth()]
+
+            return day + " " + weekDay + " " + month
+        }
     }
 
 

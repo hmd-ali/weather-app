@@ -23,18 +23,7 @@ export default {
             minTemp:Math.floor(this.data.min_temp),
             maxTemp:Math.floor(this.data.max_temp),
             StateName: this.data.weather_state_name,
-            image:{
-                Snow:require('../assets/Snow.png'),
-                Sleet:require('../assets/HeavyRain.png'),
-                Hail:require('../assets/Hail.png'),
-                Thunderstorm:require('../assets/Thunderstorm.png'),
-                HeavyRain:require('../assets/HeavyRain.png'),
-                LightRain:require('../assets/LightRain.png'),
-                Showers:require('../assets/Shower.png'),
-                HeavyCloud:require('../assets/HeavyCloud.png'),
-                LightCloud:require('../assets/LightCloud.png'),
-                Clear:require('../assets/Clear.png'),
-            },
+
 
         }
     },
@@ -52,7 +41,6 @@ export default {
                 'Light Cloud' : 'LightCloud',
                 'Clear' : 'Clear'
             }
-            console.log(states['Hail'])
             const state = states[weatherState]
             return state
         }
