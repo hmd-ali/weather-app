@@ -1,5 +1,5 @@
 <template>
-    <div class="air-container">
+    <div class="container1">
         <h1>{{text}}</h1>
         <p class="text-data"><span>{{Data}}</span> {{units}}</p>
     </div>
@@ -24,7 +24,7 @@ export default {
 </script>
 
 <style scoped>
-    .air-container{
+    .container1{
         position: relative;
         width: 328px;
         height: 160px;
@@ -37,7 +37,7 @@ export default {
     }
     h1{
         font-size: 1.5rem;
-        font-weight: 300;
+        font-weight: 500;
     }
     .text-data{
         font-size: 3rem;

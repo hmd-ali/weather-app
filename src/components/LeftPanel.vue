@@ -11,12 +11,14 @@
             <div class="image-container">
                 <img  :src="require(`../assets/${returnSrc(StateName)}.png`)" alt="state png">
             </div>
-            <h1>15 &deg;C</h1>
-            <h2>{{StateName}}</h2>
+            <div class="weather-info">
+                <h1>{{temp}}<span>&deg;C</span></h1>
+                <h2>{{StateName}}</h2>
+            </div>
         </div>
         <div class="footer">
             <p>Today &nbsp;&nbsp;&nbsp;&nbsp;.&nbsp;&nbsp;&nbsp;&nbsp; {{getDateString(date)}}</p>
-            <p>{{location}}</p>
+            <p><i class="fas fa-map-marker-alt"></i>  {{location}}</p>
         </div>
         
     </div>
@@ -41,6 +43,7 @@ export default {
         return{
             StateName: this.data.weather_state_name,
             date :this.data.applicable_date,
+            temp: Math.floor(this.data.the_temp)
             
         }
     },
@@ -121,22 +124,40 @@ export default {
 
     .content .image-container img{
         width: 90%;
-        /* height: 230px; */
         object-fit: cover;
     }
-    .content h1,.content h2{
-        margin-top: 4rem;
+    .content .weather-info{
         color: #E7E7EB;
-        font-size: 7rem;
-        font-weight: 400;
+    }
+    .content .weather-info h1{
+        font-size: 14.4rem;
+        font-weight: 500;
+    }
+    .content .weather-info h1 span{
+        font-size: 4.8rem;
+        font-weight: 500;
+        opacity: 0.5;
+    }
+    .content .weather-info h2{
+        color: #A09FB1;
+        font-weight: 600;
+        font-size: 3.6rem;
     }
     .footer{
         text-align: center;
+        color: #88869D;
     }
     .footer p{
-        color: #E7E7EB;
         font-size: 2rem;
         margin-top: 2rem;
+    }
+    .footer p:first-child{
+        font-size: 1.8rem;
+        font-weight: 500;
+    }
+    .footer p:last-child{
+        font-size: 1.8rem;
+        font-weight: 600;
     }
     .bt1{
         margin-left: 5rem;

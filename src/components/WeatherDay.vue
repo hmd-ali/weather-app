@@ -5,8 +5,8 @@
             <img  :src="require(`../assets/${returnSrc(StateName)}.png`)" alt="state png">
         </div>
         <div class="min-max">
-            <p>{{minTemp}}&deg;C</p>
             <p>{{maxTemp}}&deg;C</p>
+            <p>{{minTemp}}&deg;C</p>
         </div>
     </div>
 </template>
@@ -59,7 +59,11 @@ export default {
         justify-content: space-evenly;
         align-items: center;
         background: #1E213A;
-        color: white;
+        color: #E7E7EB;
+    }
+    .day-container p:first-child{
+        font-size: 1.6rem;
+        font-weight: 500;
     }
     .img-container{
         position: relative;
@@ -84,7 +88,10 @@ export default {
     .min-max p{
         display: inline-block;
         margin: 1rem;
-        font-size: 1.5rem;
+        font-size: 1.6rem;
+    }
+    .min-max p:last-child{
+        color: #A09FB1;
     }
 
     .day{
