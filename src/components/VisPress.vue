@@ -1,7 +1,7 @@
 <template>
     <div class="container1">
         <h1>{{text}}</h1>
-        <p class="text-data"><span>{{Data}}</span> {{units}}</p>
+        <p class="text-data"><span>{{Math.floor(data)}}</span> {{units}}</p>
     </div>
 </template>
 
@@ -13,12 +13,6 @@ export default {
         units: String,
         data: Number
     },
-    data(){
-        return{
-            Data:Math.floor(this.data)
-            
-        }
-    }
 
 }
 </script>

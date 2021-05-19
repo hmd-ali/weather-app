@@ -2,7 +2,7 @@
     <div class="container3">
         <h2>Humidity</h2>
         <div class="data">
-            <p>{{value}}</p>
+            <p>{{Math.floor(data.humidity)}}</p>
             <p>%</p>
         </div>
         <div class="bar">
@@ -12,7 +12,7 @@
                 <span>100</span>
             </div>
             <div class="unit">%</div>
-            <div class="progress" :style="{width: value +'%'}"></div>
+            <div class="progress" :style="{width: Math.floor(data.humidity) +'%'}"></div>
         </div>
     </div>
 </template>
@@ -23,11 +23,6 @@ export default {
     props:{
         data: Array,
     },
-    data(){
-        return{
-            value: Math.floor(this.data.humidity),
-        }
-    }
 }
 </script>
 

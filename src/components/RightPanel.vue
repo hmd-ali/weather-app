@@ -59,8 +59,9 @@ export default {
 
             return day + " " + weekDay + " " + month
         }
-    }
+    },
 
+    
 
 }
 </script>

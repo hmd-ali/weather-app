@@ -1,8 +1,7 @@
 <template>
   <div class="wrapper">
-    <LeftPanel :data="this.weather.consolidated_weather[0]" :location="this.weather.title"/>
-    <RightPanel :data="this.weather" :tempStatus="this.tempActive"/>
-    <!-- <p style="color:white;background:red;width:100px;">{{weather}}</p> -->
+    <LeftPanel @send-id="sendId" :data="weather.consolidated_weather[0]" :location="weather.title"/>
+    <RightPanel :data="weather" :tempStatus="tempActive"/>
   </div>
   
 </template>
@@ -23,35 +22,34 @@ export default {
     return{
       weather:[],
       tempActive: true,
+      locID : 2487956,
     }
   },
   methods:{
-    async fetchLocation(){
-      const apiFetchUrl = 'https://api.allorigins.win/raw?url='
-      const apiUrl = 'https://www.metaweather.com/api/location/'
-      let url = `${apiFetchUrl}${apiUrl}search/?query=san`
-      const res = await fetch(`${url}`)
-      const data = await res.json()
-      // console.log(data[0].woeid)
-      return data[0].woeid
+    async sendId(id){
+      this.locID = await id
+      console.log('loc' ,this.locID)
+      this.weather = await this.fetchWeather(id)
+
     },
-    async fetchWeather(){
+    async fetchWeather(id){
       const apiFetchUrl = 'https://api.allorigins.win/raw?url='
       const apiUrl = 'https://www.metaweather.com/api/location/'
       // let location = await this.fetchLocation()
-      let location = 2442047
-      let url = `${apiFetchUrl}${apiUrl}${location}`
-      const res = await fetch(`${url}`)
-      const data =  await res.json()
+      let url = `${apiFetchUrl}${apiUrl}${id}`
+      let res = await fetch(`${url}`)
+      let data =  await res.json()
       // console.log("hi")
       // console.log(data)
+      console.log(url)
       return data
     }
     
     
   },
   async created(){
-      this.weather = await this.fetchWeather()
+      this.weather = await this.fetchWeather(this.locID)
+      // this.locID = await this.sendId(id)
     },
 
   

@@ -2,13 +2,13 @@
     <div class="container2">
         <h2>Wind Status</h2>
         <div class="data">
-            <p class="value">{{value}}</p>
+            <p class="value">{{Math.floor(data.wind_speed)}}</p>
             <p class="unit">mph</p>
         </div>
         <div class="direction">
             <!-- <i class="fas fa-location-arrow" :style="style"></i> -->
-            <i class="fas fa-location-arrow" :style="{ transform: 'rotate(' + directionDeg + 'deg)'}"></i>
-            <p>{{directionName}}</p>
+            <i class="fas fa-location-arrow" :style="{ transform: 'rotate(' + (Math.floor(data.wind_direction)-45) + 'deg)'}"></i>
+            <p>{{data.wind_direction_compass}}</p>
         </div>
     </div>
 </template>
@@ -18,13 +18,6 @@ export default {
     name: 'Wind',
     props:{
         data:Object
-    },
-    data(){
-        return{
-            value: Math.floor(this.data.wind_speed),
-            directionName: this.data.wind_direction_compass,
-            directionDeg:Math.floor(this.data.wind_direction)-45,
-        }
     },
 }
 </script>

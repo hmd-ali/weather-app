@@ -2,11 +2,11 @@
     <div class="day-container">
         <p class="day">{{day}}</p>
         <div class="img-container">
-            <img  :src="require(`../assets/${returnSrc(StateName)}.png`)" alt="state png">
+            <img  :src="require(`../assets/${returnSrc(data.weather_state_name)}.png`)" alt="state png">
         </div>
         <div class="min-max">
-            <p>{{maxTemp}}&deg;C</p>
-            <p>{{minTemp}}&deg;C</p>
+            <p>{{Math.floor(data.max_temp)}}&deg;C</p>
+            <p>{{Math.floor(data.min_temp)}}&deg;C</p>
         </div>
     </div>
 </template>
@@ -17,15 +17,6 @@ export default {
     props:{
         data:Object,
         day: String
-    },
-    data(){
-        return{
-            minTemp:Math.floor(this.data.min_temp),
-            maxTemp:Math.floor(this.data.max_temp),
-            StateName: this.data.weather_state_name,
-
-
-        }
     },
     methods:{
         returnSrc(weatherState){
