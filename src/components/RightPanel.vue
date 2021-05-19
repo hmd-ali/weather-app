@@ -23,7 +23,7 @@
             <VisPress text='Air Pressure' units='mb' :data='data.consolidated_weather[0].air_pressure'/>
         </div>
     </div>
-    <footer><p>created by <span>username</span></p></footer>
+    <footer><p>created by <span>Cake</span></p></footer>
 </div>
 </template>
 
