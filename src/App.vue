@@ -35,13 +35,9 @@ export default {
     async fetchWeather(id){
       const apiFetchUrl = 'https://api.allorigins.win/raw?url='
       const apiUrl = 'https://www.metaweather.com/api/location/'
-      // let location = await this.fetchLocation()
       let url = `${apiFetchUrl}${apiUrl}${id}`
       let res = await fetch(`${url}`)
       let data =  await res.json()
-      // console.log("hi")
-      // console.log(data)
-      console.log(url)
       return data
     }
     
@@ -49,7 +45,6 @@ export default {
   },
   async created(){
       this.weather = await this.fetchWeather(this.locID)
-      // this.locID = await this.sendId(id)
     },
 
   
@@ -79,6 +74,13 @@ export default {
     display: flex;
   }
 
+
+  @media screen and (max-width: 480px) {
+    .wrapper{
+      flex-direction: column;
+      height: unset;
+    }
+  }
 
 
 </style>

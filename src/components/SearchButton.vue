@@ -13,7 +13,6 @@ export default {
 
 <style scoped>
     button{
-        /* display: inline-block; */
         padding: 1rem 1rem;
         background: #6E707A;
         color: #E7E7EB;

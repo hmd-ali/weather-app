@@ -23,8 +23,8 @@
         <div class="search-container-main" v-if="!defaultView">
             <div class="search-container">
                 <i @click="toggleSearch()" class="fas fa-times"></i>
-                <div class="search bt1"><i class="fas fa-search"></i><input type="search" name="search" id="search" placeholder="Search Loaction" ></div>
-                <button id="btn-search" @click="showLocations" class="bt2">Search</button>
+                <div class="search bt1"><i class="fas fa-search"></i><input @keyup="enterKey()" tabindex="1" type="search" name="search" id="search" placeholder="Search Loaction" ></div>
+                <button tabindex="2" id="btn-search" @click="showLocations" class="bt2">Search</button>
             </div>
 
             <div class="location-container">
@@ -70,6 +70,7 @@ export default {
         },
         toggleSearch(){
             this.defaultView = !this.defaultView
+            this.defaultView === false ? document.getElementById('search').focus() : !document.getElementById('search').focus()
         },
         returnSrc(weatherState){
             const states = {
@@ -110,6 +111,16 @@ export default {
             this.query = document.getElementById('search').value
             this.locations = await this.fetchLoaction(this.query)
         },
+        enterKey(){
+            const input  = this.document.getElementById('search')
+            console.log("hi")
+            input.addEventListener('keyup' , (e) =>{
+                if (e.key === 13){
+                    e.preventDefault()
+                    this.document.getElementById('btn-search').click()
+                }
+            })
+        }        
     },
     async created(){
         this.query = document.getElementById('search').value
@@ -122,7 +133,8 @@ export default {
 <style scoped>
     .container-main{
         position: relative;
-        height: 100%;
+        height: 100vh;
+        min-height: 840px;
         width: 33%;
         display: flex;
         flex-direction: column;
@@ -152,8 +164,6 @@ export default {
     .btn-container{
         position: relative;
         width: 100%;
-        /* padding: 4rem 6rem; */
-        /* padding: 8% 8%; */
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -302,7 +312,6 @@ export default {
         content: '';
         position: absolute;
         bottom: 50%;
-        /* transform: translateY(-50%); */
         border: solid #E7E7EB;
         border-width: 0 4px 4px 0;
         display: inline-block;
@@ -321,5 +330,47 @@ export default {
         cursor: pointer;
         color: #E7E7EB;
     }
-    
+    @media  screen and (max-width: 480px){
+        .container-main{
+            position: relative;
+            width: 100%;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 5rem 2rem;
+
+        }
+        .container-main .container{
+            height: 100%;
+
+        }
+        .container .content{
+            padding: unset;
+            width: 100%;
+        }
+        .search-container-main{
+            height: 100%;
+        }
+        .search-container-main .search-container{
+            width: 100%;
+            padding: unset;
+        }
+        .bt1, .bt2{
+            margin: 0;
+        }
+        .bt2{
+            margin-right: .5rem;
+        }
+        .search-container .search{
+            width: 60%;
+        }
+        .fa-times{
+            position: absolute;
+            right: 2%;
+            top: -5%;
+            font-size: 2.5rem;
+            color:#A09FB1;
+        }
+    }
 </style>

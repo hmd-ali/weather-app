@@ -1,6 +1,5 @@
 <template>
 <div class="container">
-    <!-- <p>{{data.consolidated_weather[0].humidity}}</p> -->
     <div class="temp-button-container">
         <TempButton text="&deg;C" :tempStatus="tempStatus"/>
         <TempButton text="&deg;F" :tempStatus="!tempStatus"/>
@@ -71,10 +70,11 @@ export default {
         position: relative;
         width: 67%;
         height: 100vh;
+        min-height: 840px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        /* justify-content: space-around; */
+        justify-content: space-between;
         background: #100E1D;
     }
     .temp-button-container{
@@ -128,8 +128,6 @@ export default {
         margin-top: 3rem;
     }
     footer{
-        position: absolute;
-        bottom: 0;
         width: 100%;
         color: #A09FB1;
         font-size: 1.4rem;
@@ -140,6 +138,49 @@ export default {
 
     footer span{
         font-weight: 700;
+    }
+
+    @media screen and (max-width: 480px) {
+        .container{
+            padding-top: 4rem;
+            min-width: 100%;
+            display: flex;
+            flex-direction: column;
+            height: auto;
+        }
+        .temp-button-container{
+            display: none;
+        }
+        .weather-data{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            padding: unset;
+            flex: 1;
+        }
+        .highlights-container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 2rem .5rem 2rem .5rem;
+        }
+        .highlights-container h1{
+            text-align: center;
+        }
+        .highlights-container .wind-humidity{
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+        .highlights-container .detail-container{
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
     }
 
 </style>

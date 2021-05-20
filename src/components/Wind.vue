@@ -6,7 +6,6 @@
             <p class="unit">mph</p>
         </div>
         <div class="direction">
-            <!-- <i class="fas fa-location-arrow" :style="style"></i> -->
             <i class="fas fa-location-arrow" :style="{ transform: 'rotate(' + (Math.floor(data.wind_direction)-45) + 'deg)'}"></i>
             <p>{{data.wind_direction_compass}}</p>
         </div>
@@ -64,7 +63,6 @@ export default {
         padding: 1rem 1rem;
         font-size: 1.5rem;
         margin-right: .5rem;
-        /* transform: rotate(-45deg); */
     }
     .container2 .direction p{
         margin-left: .5rem;

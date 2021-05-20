@@ -68,9 +68,6 @@ export default {
     .img-container img{
         width: 60%;
     }
-    /* img{
-        width: 70%;
-    } */
     .min-max{
         display: flex;
         justify-content: space-between;
@@ -87,6 +84,13 @@ export default {
 
     .day{
         font-size: 1.2rem;
+    }
+
+    @media screen and (max-width: 480px) {
+        .day-container{
+            flex: 1;
+            margin: 1rem;
+        }
     }
     
 </style>
