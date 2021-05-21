@@ -1,26 +1,42 @@
 <template>
   <div class="container">
     <div class="temp-button-container">
-      <TempButton text="&deg;C" :tempStatus="tempStatus" />
-      <TempButton text="&deg;F" :tempStatus="!tempStatus" />
+      <TempButton
+        text="&deg;C"
+        :tempStatus="tempStatus"
+        @temp-btn-click="tempClick"
+      />
+      <TempButton
+        text="&deg;F"
+        :tempStatus="!tempStatus"
+        @temp-btn-click="tempClick"
+      />
     </div>
     <div class="weather-data">
-      <WeatherDay :data="data.consolidated_weather[1]" day="Tomorrow" />
+      <WeatherDay
+        :data="data.consolidated_weather[1]"
+        day="Tomorrow"
+        :tempStatus="tempStatus"
+      />
       <WeatherDay
         :data="data.consolidated_weather[2]"
         :day="getDateString(data.consolidated_weather[2].applicable_date)"
+        :tempStatus="tempStatus"
       />
       <WeatherDay
         :data="data.consolidated_weather[3]"
         :day="getDateString(data.consolidated_weather[3].applicable_date)"
+        :tempStatus="tempStatus"
       />
       <WeatherDay
         :data="data.consolidated_weather[4]"
         :day="getDateString(data.consolidated_weather[4].applicable_date)"
+        :tempStatus="tempStatus"
       />
       <WeatherDay
         :data="data.consolidated_weather[5]"
         :day="getDateString(data.consolidated_weather[5].applicable_date)"
+        :tempStatus="tempStatus"
       />
     </div>
     <div class="highlights-container">
@@ -43,7 +59,7 @@
       </div>
     </div>
     <footer>
-      <p>created by <span>Cake</span></p>
+      <p>created by <span>Ali Hammoud</span></p>
     </footer>
   </div>
 </template>
@@ -68,6 +84,7 @@ export default {
     data: Object,
     tempStatus: Boolean,
   },
+  emits: ["temp-btn-click"],
   methods: {
     getDateString(mydate) {
       const date = new Date(mydate);
@@ -91,6 +108,9 @@ export default {
       let month = months[date.getMonth()];
 
       return day + " " + weekDay + " " + month;
+    },
+    tempClick() {
+      this.$emit("temp-btn-click");
     },
   },
 };

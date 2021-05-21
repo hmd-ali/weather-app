@@ -4,8 +4,9 @@
       @send-id="sendId"
       :data="weather.consolidated_weather[0]"
       :location="weather.title"
+      :tempStatus="tempActive"
     />
-    <RightPanel :data="weather" :tempStatus="tempActive" />
+    <RightPanel :data="weather" :tempStatus="tempActive" @temp-btn-click="toggleTemp"/>
   </div>
 </template>
 
@@ -26,6 +27,7 @@ export default {
       locID: 2487956,
     };
   },
+  emits:['temp-btn-click'],
   methods: {
     async sendId(id) {
       this.locID = await id;
@@ -39,6 +41,10 @@ export default {
       let res = await fetch(`${url}`);
       let data = await res.json();
       return data;
+    },
+    toggleTemp(){
+      this.tempActive = !this.tempActive
+      console.log('hi')
     },
   },
   async created() {

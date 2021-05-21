@@ -1,5 +1,5 @@
 <template>
-  <button v-bind:class="[tempStatus ? 'active' : '']" @click="$emit(onClick())">
+  <button v-bind:class="[tempStatus ? 'active' : '']" @click="onClick()">
     {{ text }}
   </button>
 </template>
@@ -11,11 +11,13 @@ export default {
     text: String,
     tempStatus: Boolean,
   },
+  emits:['temp-btn-click'],
   methods: {
     onClick() {
-      this.emit("temp-btn-click", this.tempStatus);
+      this.$emit("temp-btn-click");
     },
   },
+
 };
 </script>
 
@@ -31,6 +33,7 @@ button {
   border: none;
   padding: 0.5rem;
   margin: 1rem;
+  cursor: pointer;
 }
 button.active {
   background: #e7e7eb;

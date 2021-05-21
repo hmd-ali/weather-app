@@ -8,8 +8,8 @@
       />
     </div>
     <div class="min-max">
-      <p>{{ Math.floor(data.max_temp) }}&deg;C</p>
-      <p>{{ Math.floor(data.min_temp) }}&deg;C</p>
+      <p>{{ tempStatus ? Math.floor(data.max_temp) : Math.floor((data.max_temp)*1.8 +32) }}&deg;{{tempStatus ? 'C' : 'F'}}</p>
+      <p>{{ tempStatus ? Math.floor(data.min_temp) : Math.floor((data.min_temp)*1.8 +32) }}&deg;{{tempStatus ? 'C' : 'F'}}</p>
     </div>
   </div>
 </template>
@@ -20,6 +20,7 @@ export default {
   props: {
     data: Object,
     day: String,
+    tempStatus: Boolean,
   },
   methods: {
     returnSrc(weatherState) {

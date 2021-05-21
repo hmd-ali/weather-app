@@ -20,7 +20,7 @@
           />
         </div>
         <div class="weather-info">
-          <h1>{{ Math.floor(data.the_temp) }}<span>&deg;C</span></h1>
+          <h1>{{ tempStatus ? Math.floor(data.the_temp) : Math.floor((data.the_temp)*1.8 +32) }}<span>&deg;{{tempStatus ? 'C' : 'F'}}</span></h1>
           <h2>{{ data.weather_state_name }}</h2>
         </div>
       </div>
@@ -77,6 +77,7 @@ export default {
   props: {
     data: Object,
     location: String,
+    tempStatus: Boolean,
   },
   emits: ["send-id"],
   data() {
