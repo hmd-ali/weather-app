@@ -59,7 +59,7 @@
       </div>
     </div>
     <footer>
-      <p>created by <span>Ali Hammoud</span></p>
+      <p>created by <span>Ali Hammmoud</span></p>
     </footer>
   </div>
 </template>

@@ -24,7 +24,7 @@
 export default {
   name: "Humidity",
   props: {
-    data: Array,
+    data: Object,
   },
 };
 </script>

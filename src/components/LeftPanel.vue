@@ -50,7 +50,7 @@
         </button>
       </div>
 
-      <div class="location-container">
+      <div v-if="!locations == '' " class="location-container">
         <div
           class="location"
           :key="loc.value"
@@ -60,7 +60,12 @@
           <h1>{{ loc.title }}</h1>
         </div>
       </div>
+      <div v-if="locations == ''" class="no-location">
+        <h1>no locations</h1>
+
+      </div>
     </div>
+    <!-- <div class="lat-long-container" v-if="latLong"></div> -->
   </div>
 </template>
 
@@ -86,6 +91,7 @@ export default {
       date: this.data.applicable_date,
       temp: Math.floor(this.data.the_temp),
       defaultView: true,
+      latLong: true,
       locations: [],
       query: "",
     };
@@ -99,8 +105,8 @@ export default {
     toggleSearch() {
       this.defaultView = !this.defaultView;
       this.defaultView === false
-        ? document.getElementById("search").focus()
-        : !document.getElementById("search").focus();
+        // ? document.getElementById("search").focus()
+        // : !document.getElementById("search").focus();
     },
     returnSrc(weatherState) {
       const states = {
@@ -153,10 +159,8 @@ export default {
       this.locations = [];
       this.query = document.getElementById("search").value;
       this.locations = await this.fetchLoaction(this.query);
+      console.log('hello' + this.locations)
     },
-  },
-  async created() {
-    this.query = document.getElementById("search").value;
   },
 };
 </script>
@@ -190,6 +194,19 @@ export default {
   left: -40px;
   width: 130%;
   opacity: 0.1;
+}
+.no-location{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.no-location h1{
+  color:white;
+  font-size: 3rem;
+  text-transform: capitalize;
 }
 .btn-container {
   position: relative;
@@ -371,6 +388,11 @@ export default {
   cursor: pointer;
   color: #e7e7eb;
 }
+  .lat-long-container{
+    height: 500px;
+    width: 500px;
+    background: red
+  }
 
 @media screen and (max-width: 1200px) and (min-width: 993px) {
   .container-main {
@@ -541,5 +563,6 @@ export default {
     font-size: 2.5rem;
     color: #a09fb1;
   }
+
 }
 </style>
